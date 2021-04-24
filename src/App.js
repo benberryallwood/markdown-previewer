@@ -12,9 +12,8 @@ const Editor = (props) => {
 }
 
 const Preview = (props) => {
-    const htmlConverted = marked(props.content);
     return (
-        <div id="preview" dangerouslySetInnerHTML={{__html: htmlConverted}} />
+        <div id="preview" dangerouslySetInnerHTML={{__html: marked(props.content)}} />
     );
 };
 
@@ -22,7 +21,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: 'markdown'
+            content: defaultContent
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -37,7 +36,6 @@ class App extends React.Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1>Markdown Previewer</h1>
                     <Editor content={this.state.content} handleChange={this.handleChange} />
                     <Preview content={this.state.content} />
                 </header>
@@ -46,4 +44,56 @@ class App extends React.Component {
     }
 }
 
+const defaultContent = `# Markdown Previewer
+This is a markdown previewer built using [React](https://reactjs.org).
+
+---
+
+## What You Can Do With Markdown
+- You can make text *italic* with \`*italic*\`
+- You can make text **bold** with \`**bold**\`
+
+Lists are written as follows:
+
+    - List item 1
+    - List item 2
+    - List item 3
+
+You can also include an image:
+
+![React Logo](https://miro.medium.com/max/500/1*cPh7ujRIfcHAy4kW2ADGOw.png)
+
+>Markdown is great
+`;
+
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
