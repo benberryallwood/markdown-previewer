@@ -1,6 +1,8 @@
 import './App.css';
 import React from "react";
 
+const marked = require("marked");
+
 const Editor = (props) => {
     return (
         <div>
@@ -10,10 +12,9 @@ const Editor = (props) => {
 }
 
 const Preview = (props) => {
+    const htmlConverted = marked(props.content);
     return (
-        <div id="preview">
-            <p>{props.content}</p>
-        </div>
+        <div id="preview" dangerouslySetInnerHTML={{__html: htmlConverted}} />
     );
 };
 
